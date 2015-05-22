@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Vuejs</title>
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+	<div class="container">
+		<div id="tasks">
+			<div>
+				<div>
+					<h1>Add task</h1>
+					<form v-on="submit: addTask">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="I need to..." v-model="newTask" v-el="newTask">
+							<p v-if="error">{{ error }}</p>
+						</div>
+						<button class="btn btn-primary">Add task</button>
+						<button v-on="click: completeAll" class="btn btn-default">Mark all as completed</button>
+					</form>
+				</div>
+
+				<div v-show="remaining.length">
+					<hr>
+
+					<h2>Tasks ({{ remaining.length }})</h2>
+
+					<ol class="list-group">
+						<li v-repeat="task: tasks | inProcess" class="list-group-item">
+							<span v-on="dblclick: editTask(task)">{{ task.body }}</span>
+							<button v-on="click: removeTask(task)">&#10007;</button>
+							<button v-on="click: toggleTaskCompletion(task)">&#10004;</button>
+						</li>
+					</ol>
+				</div>
+
+				<div v-if="completions.length">
+					<hr>
+
+					<h2>Completed ({{ completions.length }})</h2>
+					<ol class="list-group">
+						<li v-repeat="task: tasks | filterBy true in completed" class="list-group-item">
+							<span>{{ task.body }}</span>
+							<button v-on="click: toggleTaskCompletion(task)">&#10007;</button>
+						</li>
+					</ol>
+
+					<button class="btn btn-danger" v-on="click: clearCompleted">Clear Completed</button>
+				</div>
+			</div>
+			<!--<pre>{{ $data | json }}</pre>-->
+		</div>
+	</div>
+
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="bower_components/vue/dist/vue.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+</html>

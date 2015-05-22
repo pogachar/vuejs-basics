@@ -1,0 +1,21 @@
+{
+  "name": "vuejs",
+  "version": "0.0.0",
+  "authors": [
+    "Jernej Pogačar <pogacar.jernej@gmail.com>"
+  ],
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "jquery": "~2.1.4",
+    "vue": "~0.11.10"
+  }
+}
